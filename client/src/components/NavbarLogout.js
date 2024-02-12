@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../src/download-removebg-preview-removebg-preview.png";
+import logo from "../../src/BB.png";
 export default function Navbar() {
   async function logoutFunction() {
    
@@ -14,14 +14,14 @@ export default function Navbar() {
   }
   let navigate = useNavigate();
   return (
-    <div className="flex justify-between px-3 py-3 ">
+    <div className="flex justify-between px-3 py-3 bg-slate-950 ">
       <div className="">
         <img
           onClick={() => {
             navigate(`/`);
           }}
           src={logo}
-          className="cursor-pointer h-12"
+          className="cursor-pointer h-10"
         />
       </div>
       <div className="md:hidden">
@@ -34,7 +34,7 @@ export default function Navbar() {
           onClick={() => {
             goToDashboard();
           }}
-          className="text-[#E50914] bg-white border-2 border-[#E50914] text-xl px-8 font-semibold  duration-100 cursor-pointer  mx-2 "
+          className="mx-2 duration-100 cursor-pointer px-8 rounded border-[#E50914] text-[#E50914] border-2 "
          
         >
         Go to dashboard
@@ -43,7 +43,7 @@ export default function Navbar() {
           onClick={() => {
             logoutFunction();
           }}
-          className="text-white text-xl px-8  duration-100 cursor-pointer  mx-2 "
+          className="text-white text-xl px-8 duration-100 cursor-pointer mx-2 rounded"
           style={{ backgroundColor: "#E50914" }}
         >
           Logout

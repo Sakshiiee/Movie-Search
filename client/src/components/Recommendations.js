@@ -20,18 +20,21 @@ const responsive = {
     items: 1,
   },
 };
-export default function Recommendations({ recommendations, title }) {
+export default function Recommendations({ recommendations}) {
   return (
     <div className=" text-start  my-3 mx-0 md:mx-3">
       <span className="mx-3 md:mx-3 capitalize font-semibold  text-3xl  block ">
         recommendations
       </span>
-      <span className=" mt-3 block mx-2 md:mx-3  ">Movies similar to - {title}</span>
+      <span className=" mt-3 block mx-2 md:mx-3  ">
+        {/* Movies similar to - {title} */}
+        </span>
       <div className="py-3     ">
  
         <Carousel responsive={responsive}>
           {recommendations.map((reco, index) => {
             return (
+              <>
               <div
                 className={` h-72 hover:brightness-75 mx-0 md:mx-1 border  bg-cover cursor-pointer  duration-100  bg-center bg-no-repeat rounded shadow-lg bg-[url(https://image.tmdb.org/t/p/original${
                   reco && reco.backdrop_path
@@ -41,14 +44,13 @@ export default function Recommendations({ recommendations, title }) {
                   window.location.href = `http://localhost:3000/movie/${reco.id}`;
                   // navigate(`/movie/${reco.id}`);
                 }}
-              >
-                <div className="flex  justify-between px-2 mt-1 font-semibold text-white ">
-                  <span className="text-sm px-2 py-1 rounded-full hover:text-black hover:bg-gray-300">
-                    {reco.original_title}
-                  </span>
-                  <span className="text-xs px-2 py-1 rounded-full hover:text-black hover:bg-gray-300">{reco.vote_average}</span>
-                </div>
-              </div>
+              ></div>
+              <div className="flex  justify-between px-2 mt-1 font-semibold text-white ">
+                    <span className="text-xl px-2 py-1 rounded hover:text-black hover:bg-red-600">
+                      {reco.original_title}
+                    </span>
+                  </div>
+              </>
             );
           })}
         </Carousel>

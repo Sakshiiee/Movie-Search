@@ -52,6 +52,29 @@ export default class componentName extends Component {
     };
   }
 
+  verifyLogin = async () => {
+    try {
+      // Make a GET request to the /verify-login endpoint
+      const response = await axios.post(
+        "http://localhost:8000/users/verifyLogin",
+        {},
+        {
+          headers: {
+            "authorization": `token ${localStorage.getItem("moviesToken")}`,
+          },
+        }
+      );
+
+      // If verification succeeds, set loggedIn state to true
+      if (response.data.verified) {
+        console.log("login success")
+        this.setState({ loggedin: true });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   getLatestMovies = async () => {
     try {
       let response = await axios.get(`
@@ -95,9 +118,9 @@ export default class componentName extends Component {
   Recommendations = async () => {
     try {
       let response = await axios.get(`
-      https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`);
+      https://api.themoviedb.org/3/movie/recommendations?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`);
 
-      this.setState({ Recommendations: response.data.results });
+      this.setState({ recommendations: response.data.results });
     } catch (error) { }
   };
 
@@ -149,6 +172,7 @@ export default class componentName extends Component {
   };
 
   componentDidMount() {
+    this.verifyLogin();
     this.getAccountInformation();
     this.getPopularMovies();
     this.getTopRatedMovies();
@@ -168,7 +192,7 @@ export default class componentName extends Component {
         {this.state.top_rated.length !== 0 &&
           this.state.now_playing.length !== 0 &&
           this.state.popular_movies.length !== 0 ? (
-          <div className="bg-black text-white">
+          <div className="bg-slate-950 text-white">
             <NowPlaying now_playing={this.state.now_playing} />
             <PopularMovies popular_movies={this.state.popular_movies} />
             <TopRated top_rated={this.state.top_rated} />

@@ -1,16 +1,13 @@
 import React from "react";
 import swal from "sweetalert";
 import axios from "axios";
-import { AiOutlineDislike } from "react-icons/ai";
-import { AiOutlineLike } from "react-icons/ai";
-import { AiFillLike } from "react-icons/ai";
-import { AiFillDislike } from "react-icons/ai";
+import { ThumbsUp } from "@phosphor-icons/react";
+import { ThumbsDown } from "@phosphor-icons/react";
+import { BookmarkSimple } from "@phosphor-icons/react";
 import { BsBookmark } from "react-icons/bs";
-import { BsFillBookmarkFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 export default function MovieInformationDiv({ movie, provider }) {
-  console.log("this is provider : ", provider);
   let navigate = useNavigate();
   let { id } = useParams();
   const [user, setuser] = useState([]);
@@ -50,7 +47,6 @@ export default function MovieInformationDiv({ movie, provider }) {
   // }
   async function getUserInformation() {
     try {
-      console.log("getting userinformation : ");
       let response = await axios.post(
         "http://localhost:8000/users/individual",
         {},
@@ -65,14 +61,13 @@ export default function MovieInformationDiv({ movie, provider }) {
 
       let results = response.data.user;
 
-      console.log("user information : ", results);
       // currentuser.push(results);
 
       setuser(results);
 
       // updateLikedID(results);
       // this.setState({ provider: results[Object.keys(results)[0]] });
-    } catch (error) {}
+    } catch (error) { }
   }
   // let inwatchlist =
   //   user && user[0].watchlist.some((item) => item.originalId === parseInt(id));
@@ -202,7 +197,7 @@ export default function MovieInformationDiv({ movie, provider }) {
   return (
     <div className="  px-2 lg:px-8">
       <div className=" mt-3 mb-5 text-start  ">
-        <span className="text-3xl md:text-5xl text-blue-900 md:text-black font-sans font-semibold block ">
+        <span className="text-3xl md:text-5xl   font-sans font-semibold block ">
           {movie.original_title}
         </span>
         <span className="font-sans text-lg mt-3 text-gray-500 block ">
@@ -217,16 +212,16 @@ export default function MovieInformationDiv({ movie, provider }) {
           className="text-5xl   rounded-full  filled hover:scale-105 duration-100 cursor-pointer inline-block "
         >
           {user &&
-          user.likes &&
-          user.likes.some((object) => object.originalId === parseInt(id)) ? (
+            user.likes &&
+            user.likes.some((object) => object.originalId === parseInt(id)) ? (
             <span className="text-pink-500 ">
               {" "}
-              <AiFillLike />
+              <ThumbsUp size={40} color="#0a0a0a" weight="fill" />
             </span>
           ) : (
             <span className="text-pink-500">
               {" "}
-              <AiOutlineLike />
+              <ThumbsUp size={40} color="#0a0a0a" />
             </span>
           )}
         </span>
@@ -236,20 +231,16 @@ export default function MovieInformationDiv({ movie, provider }) {
           }}
           className="text-5xl mx-5 text-black hover:scale-105 duration-100 cursor-pointer inline-block "
         >
-          {" "}
-          {/* {console.log(
-            "this is teh result : ",
-           (  user.dislikes.some((obj) => obj.originalID === parseInt(id)))
-          )} */}
+
           {user &&
-          user.dislikes &&
-          user.dislikes.some((obj) => obj.originalId === parseInt(id)) ? (
+            user.dislikes &&
+            user.dislikes.some((obj) => obj.originalId === parseInt(id)) ? (
             <span className="text-black-500">
-              <AiFillDislike />
+              <ThumbsDown size={40} color="#0a0a0a" weight="fill" />
             </span>
           ) : (
             <span className="text-black-500">
-              <AiOutlineDislike />
+              <ThumbsDown size={40} color="#0a0a0a" />
             </span>
           )}
         </span>
@@ -260,17 +251,17 @@ export default function MovieInformationDiv({ movie, provider }) {
           className={`hover:scale-105 duration-100 cursor-pointer inline-block   text-5xl   `}
         >
           {user &&
-          user.watchlist &&
-          user.watchlist.some((obj) => obj.originalId === parseInt(id)) ? (
+            user.watchlist &&
+            user.watchlist.some((obj) => obj.originalId === parseInt(id)) ? (
             <span className="text-cyan-500">
-              <BsFillBookmarkFill />
+              <BookmarkSimple size={40} color="#0a0a0a" weight="fill" />
             </span>
           ) : (
             <span className="text-cyan-500">
-              <BsBookmark />
+              <BookmarkSimple size={40} color="#0a0a0a" />
             </span>
           )}
-          {/* <BsFillBookmarkFill /> */}
+
         </span>
       </div>
       <div>
@@ -279,9 +270,8 @@ export default function MovieInformationDiv({ movie, provider }) {
             onClick={() => {
               setOptionAmongFour("overview");
             }}
-            className={` my-3 font-semibold  mr-2 capitalize text-base md:text-2xl   duration-500 cursor-pointer ${
-              optionAmongFour === "overview" && "border-b-2 pb-1 border-red-600"
-            } `}
+            className={` my-3 font-semibold  mr-2 capitalize text-base md:text-2xl   duration-500 cursor-pointer ${optionAmongFour === "overview" && "border-b-2 pb-1 border-red-600"
+              } `}
           >
             Overview
           </span>
@@ -289,9 +279,8 @@ export default function MovieInformationDiv({ movie, provider }) {
             onClick={() => {
               setOptionAmongFour("cast");
             }}
-            className={` my-3 mx-2 font-semibold md:mx-5 capitalize  text-base md:text-2xl   duration-500 cursor-pointer ${
-              optionAmongFour === "cast" && "border-b-2 pb-1 border-red-600"
-            } `}
+            className={` my-3 mx-2 font-semibold md:mx-5 capitalize  text-base md:text-2xl   duration-500 cursor-pointer ${optionAmongFour === "cast" && "border-b-2 pb-1 border-red-600"
+              } `}
           >
             cast
           </span>
@@ -299,9 +288,8 @@ export default function MovieInformationDiv({ movie, provider }) {
             onClick={() => {
               setOptionAmongFour("moreinfo");
             }}
-            className={`my-3  ${
-              optionAmongFour === "moreinfo" && "border-b-2 pb-1 border-red-600"
-            } mx-2 md:mx-5 capitalize  text-base md:text-2xl   duration-500 cursor-pointer font-semibold`}
+            className={`my-3  ${optionAmongFour === "moreinfo" && "border-b-2 pb-1 border-red-600"
+              } mx-2 md:mx-5 capitalize  text-base md:text-2xl   duration-500 cursor-pointer font-semibold`}
           >
             more info
           </span>
@@ -309,10 +297,9 @@ export default function MovieInformationDiv({ movie, provider }) {
             onClick={() => {
               setOptionAmongFour("wheretowatch");
             }}
-            className={`my-3     ${
-              optionAmongFour === "wheretowatch" &&
+            className={`my-3     ${optionAmongFour === "wheretowatch" &&
               "border-b-2 pb-1 border-red-600"
-            }   mx-2 md:mx-5 capitalize  text-base md:text-2xl   duration-500 cursor-pointer font-semibold`}
+              }   mx-2 md:mx-5 capitalize  text-base md:text-2xl   duration-500 cursor-pointer font-semibold`}
           >
             where to watch{" "}
           </span>
@@ -320,7 +307,7 @@ export default function MovieInformationDiv({ movie, provider }) {
         <div className="text-start ">
           {optionAmongFour === "wheretowatch" &&
             (provider.hasOwnProperty("rent") ||
-            provider.hasOwnProperty("buy") ? (
+              provider.hasOwnProperty("buy") ? (
               <div className=" pt-5 duration-5000  grid grid-cols-5 ">
                 <div className="col-span-2 ">
                   <span className="block mb-3 text-2xl capitalize ">
@@ -339,22 +326,21 @@ export default function MovieInformationDiv({ movie, provider }) {
                   <span className="block  text-2xl  capitalize  ">
                     {watchMode} options{" "}
                   </span>
-                  <div className="py-3 inline-block  w-full  grid grid-cols-3">
+                  {console.log("provdier : ", provider)}
+                  {provider !== undefined ? <div className="py-3 inline-block  w-full  grid grid-cols-3">
                     {(provider.hasOwnProperty("rent") ||
                       provider.hasOwnProperty("buy")) &&
                       provider.hasOwnProperty(watchMode) &&
                       provider[watchMode].map((name, index) => {
                         return (
                           <div
-                            className={` my-3 inline-block cursor-pointer hover:scale-105 duration-300    ${
-                              index % 3 !== 0 && "mx-6 "
-                            }`}
+                            className={` my-3 inline-block cursor-pointer hover:scale-105 duration-300    ${index % 3 !== 0 && "mx-6 "
+                              }`}
                           >
                             <img
                               className=" h-8  w-8 rounded-full"
-                              src={`https://image.tmdb.org/t/p/original${
-                                name && name.logo_path
-                              }`}
+                              src={`https://image.tmdb.org/t/p/original${name && name.logo_path
+                                }`}
                             />
                             <span className="text-sm text-gray-500 mt-2 block duration-100">
                               {name.provider_name}
@@ -362,7 +348,7 @@ export default function MovieInformationDiv({ movie, provider }) {
                           </div>
                         );
                       })}
-                  </div>
+                  </div> : "hull"}
                 </div>
               </div>
             ) : (
@@ -374,21 +360,19 @@ export default function MovieInformationDiv({ movie, provider }) {
                       Flatrate{" "}
                     </div>
                     <div className="py-3 inline-block  w-full  grid grid-cols-3">
-                      <div className="py-3 inline-block  w-full  grid grid-cols-3">
+                      {provider !== undefined ? <div className="py-3 inline-block  w-full  grid grid-cols-3">
                         {provider.hasOwnProperty("flatrate") &&
                           provider.flatrate.map((name, index) => {
                             console.log("flat rate index ; ", index);
                             return (
                               <div
-                                className={` my-3 inline-block cursor-pointer hover:scale-105 duration-300    ${
-                                  index % 3 !== 0 && "mx-6 "
-                                }`}
+                                className={` my-3 inline-block cursor-pointer hover:scale-105 duration-300    ${index % 3 !== 0 && "mx-6 "
+                                  }`}
                               >
                                 <img
                                   className=" h-8  w-8 rounded-full"
-                                  src={`https://image.tmdb.org/t/p/original${
-                                    name && name.logo_path
-                                  }`}
+                                  src={`https://image.tmdb.org/t/p/original${name && name.logo_path
+                                    }`}
                                 />
                                 <span className="text-sm text-gray-500 mt-2 block duration-100">
                                   {name.provider_name}
@@ -396,7 +380,7 @@ export default function MovieInformationDiv({ movie, provider }) {
                               </div>
                             );
                           })}
-                      </div>
+                      </div> : "nothing to show"}
                     </div>
                   </div>
                 )}
@@ -433,9 +417,8 @@ export default function MovieInformationDiv({ movie, provider }) {
                 {movie.production_countries.map((country, index) => {
                   return (
                     <span
-                      className={`block py-1 px-3 inline-block ${
-                        index >= 1 && "mx-2 "
-                      }  duration-300 text-gray-500 cursor-pointer  hover:scale-105 border border-gray-200`}
+                      className={`block py-1 px-3 inline-block ${index >= 1 && "mx-2 "
+                        }  duration-300 text-gray-500 cursor-pointer  hover:scale-105 border border-gray-200`}
                     >
                       {country.name}
                     </span>
@@ -456,15 +439,14 @@ export default function MovieInformationDiv({ movie, provider }) {
             <div className=" my-5">
               <div>
                 <span className="block text-lg font-bold mb-1 ">Genre</span>
-                {movie.genres.map((genre, index) => {
+                {movie.genres?.map((genre, index) => {
                   return (
                     <span
                       onClick={() => {
                         navigate(`/movies/genre/${genre.id}`);
                       }}
-                      className={`inline-block py-1 px-3 duration-300 text-gray-500 cursor-pointer  hover:scale-105 border border-gray-200 ${
-                        index >= 1 ? "mx-2" : ""
-                      }`}
+                      className={`inline-block py-1 px-3 duration-300 text-gray-500 cursor-pointer  hover:scale-105 border border-gray-200 ${index >= 1 ? "mx-2" : ""
+                        }`}
                     >
                       {genre.name}
                     </span>

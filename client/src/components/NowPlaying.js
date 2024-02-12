@@ -23,6 +23,7 @@ const responsive = {
     items: 1,
   },
 };
+
 function UpcomingMovies({ now_playing }) {
   let navigate = useNavigate();
 
@@ -30,15 +31,19 @@ function UpcomingMovies({ now_playing }) {
     <>
       {now_playing.length > 0 ? (
         <>
-          <Carousel responsive={responsive}>
+          <Carousel
+            responsive={responsive}
+            autoPlay={true} // Enable autoplay
+            autoPlaySpeed={4000} // Set autoplay speed in milliseconds (5 seconds)
+          >
             {now_playing.map((upcoming, index) => {
               return (
                 <div
-                  className={` h-[500px] brightness-300 mx-5 bg-cover cursor-pointer  duration-100 bg-center bg-no-repeat rounded shadow-lg bg-[url(https://image.tmdb.org/t/p/original${
+                  key={index} // Add a unique key for each carousel item
+                  className={` h-[500px] brightness-300 mx-5 bg-cover cursor-pointer  duration-9000 bg-center bg-no-repeat rounded shadow-lg bg-[url(https://image.tmdb.org/t/p/original${
                     upcoming && upcoming.backdrop_path
                   })]  `}
                   onClick={() => {
-                 
                     window.location.href = `http://localhost:3000/movie/${upcoming.id}`;
                     // navigate(`/movie/${reco.id}`);
                   }}
@@ -65,3 +70,4 @@ function UpcomingMovies({ now_playing }) {
 }
 
 export default UpcomingMovies;
+

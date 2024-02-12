@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../src/download-removebg-preview-removebg-preview.png"
+import logo from "../../src/BB.png"
 export default function Navbar() {
   let navigate = useNavigate();
   return (
-    <div className="flex justify-between px-3 py-3 bg-neutral-950">
+    <div className="flex justify-between px py-3 bg-neutral-950">
       <div className="">
         <img onClick={() => {
             navigate(`/`);

@@ -9,18 +9,20 @@ import Actors from "./components/Actors";
 import Genre from "./components/Genre";
 import Register from "./components/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Start from "./components/Start";
 function App() {
   return (
     <div className="App bg-gray-50 ">
       <BrowserRouter>
         <Routes>
+
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          {/* <Route path="/" element={<Start />} /> */}
           <Route path="/" element={<Homepage />} />
           <Route path="/movie/:id" element={<Movie />} />
           <Route path="/movies/genre/:genretype" element={<Genre />} />
-          <Route path="/actors/:actor_id" element={<Actors />} />
 
         </Routes>
       </BrowserRouter>

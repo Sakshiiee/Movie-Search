@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import Navbar from "./Navbar";
-import logo from "../../src/download-removebg-preview-removebg-preview.png";
+import logo from "../../src/BB.png";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
@@ -96,7 +96,7 @@ export default function Register() {
   return (
     <div className="h-screen">
       {/* <Navbar /> */}
-      <div className=" flex brightness-25 loginDiv h-full bg-center bg-cover bg-no-repeat bg-[url('../../src/netflix-background.jpg')]  justify-center  ">
+      <div className=" flex brightness-25 loginDiv h-full bg-center bg-cover bg-no-repeat bg-[url('../../src/BB.png')]  justify-center   ">
         <form
           onSubmit={handleSubmit}
           className="  h-fit py-1 px-16 pt-16 pb-16 mt-10 backdrop-blur-sm border-2 border-r-[#E50914] border-t-[#E50914] border-l-[#E50914]  border-b-[#E50914] border-b  border-t border-r border-l rounded  "
@@ -107,10 +107,10 @@ export default function Register() {
                 navigate("/");
               }}
               src={logo}
-              className="h-16 text-center block cursor-pointer hover:h-20 duration-100 "
+              className="h-10 text-center block cursor-pointer hover:h-12 duration-100 "
             />
           </center>
-          <span className="text-white text-start my-3 block text-4xl">
+          <span className="text-white text-start mt-5 my-3 block text-4xl">
             Create Account
           </span>
           <div className="my-5">

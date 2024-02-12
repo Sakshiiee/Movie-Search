@@ -72,10 +72,10 @@ export default class componentName extends Component {
   }
   render() {
     return (
-      <div className="bg-black text-white">
+      <div className=" bg-slate-950 text-white">
        
         <NavbarLogout /> <br />
-        <div className="grid grid-cols-5 bg-black text-white h-screen ">
+        <div className="grid grid-cols-5 bg-slate-950 text-white h-screen ">
           <div className="col-span-1  border-r border-[#E50914]">
             <div className="grid grid-cols-1">
               <span

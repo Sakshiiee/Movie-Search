@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import NavbarLogout from "./NavbarLogout";
-import logo from "../../src/download-removebg-preview-removebg-preview.png";
+import logo from "../../src/BB.png";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -57,7 +57,7 @@ export default function Login() {
   return (
     <div className="h-screen">
       {/* <Navbar /> */}
-      <div className=" flex brightness-25 loginDiv h-full bg-center bg-cover bg-no-repeat bg-[url('../../src/netflix-background.jpg')]  justify-center  ">
+      <div className=" flex brightness-25 loginDiv h-full bg-center bg-cover bg-no-repeat bg-[url('../../src/BB.png')]  justify-center   ">
         <form
           onSubmit={handleSubmit}
           className="  h-fit py-1 px-16 pt-16 pb-16 mt-20 backdrop-blur-sm border-2 border-r-[#E50914] border-t-[#E50914] border-l-[#E50914]  border-b-[#E50914] border-b  border-t border-r border-l rounded  "
@@ -68,10 +68,10 @@ export default function Login() {
                 navigate("/");
               }}
               src={logo}
-              className="h-16 text-center block cursor-pointer hover:h-20 duration-100 "
+              className="h-10 text-center block cursor-pointer hover:h-12 duration-100 "
             />
           </center>
-          <span className="text-white text-start my-3 block text-4xl">
+          <span className="text-white text-start my-3 mt-12 block text-4xl">
             Login{" "}
           </span>
           <div className="my-5">
@@ -82,7 +82,7 @@ export default function Login() {
               Email:
             </label> */}
             <input
-              placeholder="email"
+              placeholder="Email"
               type="email"
               id="email"
               name="email"
@@ -101,7 +101,7 @@ export default function Login() {
             <input
               type="password"
               id="email"
-              placeholder="password"
+              placeholder="Password"
               name="email"
               className="block text-start  my-1 text-lg text-white bg-transparent border-b  font-light   w-full  py-1 px-2 text-center   "
               value={password}
@@ -115,7 +115,7 @@ export default function Login() {
           >
             Log in
           </button>
-          <div className="text-start  mt-3 text-[#E50914]  hover:scale-110 duration-200 cursor-pointer   ">
+          <div className="text-start  mt-3 ml-3 text-[#E50914]  hover:scale-110 duration-200 cursor-pointer   ">
             <span onClick={() => {
               navigate('/register')
             }}>Create a new account instead </span>
