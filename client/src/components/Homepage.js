@@ -53,26 +53,32 @@ export default class componentName extends Component {
   }
 
   verifyLogin = async () => {
-    try {
-      // Make a GET request to the /verify-login endpoint
-      const response = await axios.post(
-        "http://localhost:8000/users/verifyLogin",
-        {},
-        {
-          headers: {
-            "authorization": `token ${localStorage.getItem("moviesToken")}`,
-          },
-        }
-      );
+    let token = localStorage.getItem("moviesToken")
+    if (token) {
+      try {
+        
+        // Make a GET request to the /verify-login endpoint
+        const response = await axios.post(
+          "http://localhost:8000/users/verifyLogin",
+          {},
+          {
+            headers: {
+              "authorization": `token ${token}`,
+            },
+          }
+        );
 
-      // If verification succeeds, set loggedIn state to true
-      if (response.data.verified) {
-        console.log("login success")
-        this.setState({ loggedin: true });
+        // If verification succeeds, set loggedIn state to true
+        if (response.data.verified) {
+         
+          this.setState({ loggedin: true });
+        }
+      } catch (error) {
+        console.log("error : ", error)
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
+
   };
 
   getLatestMovies = async () => {
@@ -187,7 +193,7 @@ export default class componentName extends Component {
     return (
       <div>
         {" "}
-        {this.state.loggedin === true ? <NavbarLogin /> : <NavbarLogout />}
+        {this.state.loggedin === false ? <NavbarLogin /> : <NavbarLogout />}
         {/* <LatestMovie latest_movie={ this.state.latest_movie} /> */}
         {this.state.top_rated.length !== 0 &&
           this.state.now_playing.length !== 0 &&

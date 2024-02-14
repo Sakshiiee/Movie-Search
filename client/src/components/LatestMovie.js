@@ -35,7 +35,7 @@ function LatestMovie({ latest_movie }) {
           {latest_movie.map((latest, index) => {
             return (
               <div
-                className={` h-[400px] brightness-50  bg-cover cursor-pointer  duration-100 bg-center bg-no-repeat rounded shadow-lg bg-[url(https://image.tmdb.org/t/p/original${
+                className={` h-[400px] brightness-50 bg-cover cursor-pointer duration-100 bg-center bg-no-repeat rounded shadow-lg bg-[url(https://image.tmdb.org/t/p/original${
                   latest && latest.backdrop_path
                 })]  `}
                 onClick={() => {
